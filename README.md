@@ -1,43 +1,48 @@
-# Ng2Paralax
+# ng2-parallax
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.18.
+This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.18. It is a small library of components and directives that allow you to easily create parallax scrolling websites
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
+.
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Deploying to Github Pages
-
-Run `ng github-pages:deploy` to deploy to Github Pages.
 
 ## Further help
 
 To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-#Using Paralax
+#ng2-parallax components and directives
 
-the paralax library will allow you to create, within an html document or any html scrolling container a parallax scrolling experience.
-in the root of the scrolling container (for example `<body>></body>`) onw must first place the `<paralax-page></paralax-page>` component
-each section of the paralax page must be created with a `<paralax-section></paralax-section>` component.
+The paralax library is composed of 2 components: 
 
-within the `paralax-section` regular html elements are used and animated using the
+* `<parallax-page>` component (works)
+* `<parallax-section>` component (works)
 
-* paralax-path
-* paralax-fade
-* paralax-scroll
+and 3 directives which are placed as attributes of HTML elements contained within a
+
+* `[ParallaxPath]=""` (not implemented yet)
+* `[ParallaxFade]=""` (not implemented yet)
+* `[ParallaxScroll]=""` (works)
+
+##how to use ng2-parallax
+
+here's an example from the code contained within the `/src/app/app.component.html` page
+
+```
+<parallax-page [config]="{sectionHeight:'500vh',debug:false,sectionFadeIn:true,sectionFadeOut:true}">
+  <parallax-section><h1>section 1</h1></parallax-section>
+  <parallax-section>
+    <img src="assets/images/clouds.jpg" style="width:100vw;position:fixed" [ParallaxScroll]="{origin:{left:0,top:0},scrollMultiplier:0.05,leftDrift:0}"/>
+    <div style="height:300vh;width:150vw;background:url(assets/images/birds.png) repeat;position:fixed" [ParallaxScroll]="{origin:{left:-500,top:-700},scrollMultiplier:-0.1,leftMovement:300}"></div>
+    <h1>section 2 : The Birds</h1>
+  </parallax-section>
+  <parallax-section><h1>section 3</h1></parallax-section>
+  <parallax-section [sectionHeight]="'600vh'"><h1>section 4</h1></parallax-section>
+  <parallax-section><h1>section 5</h1></parallax-section>
+  <parallax-section><h1>section 6</h1></parallax-section>
+</parallax-page>
+```
