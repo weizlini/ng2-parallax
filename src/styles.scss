@@ -8,14 +8,23 @@ body{
   color:transparent;
   background:transparent;
   visibility:hidden;
+  position:relative;
 }
 .parallax-debug .parallax-section{
   background:#999;
   color:#fff;
+  border:1px solid #c00;
 }
 .parallax-section h1{
   position:fixed;
   top:1em;
   left:1em;
   color:#99ccee;
+}
+*[hidden]{
+  display:none!important;
+}
+
+.clouds{
+  width:100vw;position:fixed;
 }

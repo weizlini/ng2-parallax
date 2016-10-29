@@ -5,7 +5,7 @@ import { ParallaxScrollDirective } from './parallax-scroll.directive';
 
 describe('Directive: ParallaxScroll', () => {
   it('should create an instance', () => {
-    let directive = new ParallaxScrollDirective();
+    let directive = new ParallaxScrollDirective(null,null);
     expect(directive).toBeTruthy();
   });
 });

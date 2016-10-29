@@ -1,5 +1,5 @@
 <div class="paralax-page" [ngClass]="{'parallax-debug':config.debug}">
-  <div class="paralax-monitor" [hidden]="!config.debug">
+  <div class="paralax-monitor" *ngIf="config.debug">
     page-scroll:{{_winScroll}}<br/>
     current:{{_currentSectionIndex}}
     next:{{_nextSectionIndex}}

@@ -14,3 +14,14 @@ export interface ParallaxConfig{
     sectionFadeOut:boolean;
 
 }
+export interface position{
+    top:string;
+    left:string;
+}
+
+export interface ParallaxScrollConfig{
+    origin:position;
+    scrollMultiplier:number;
+    leftMovement:number;
+
+}

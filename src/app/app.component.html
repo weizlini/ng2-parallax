@@ -1,6 +1,11 @@
 <parallax-page [config]="{sectionHeight:'500vh',debug:false,sectionFadeIn:true,sectionFadeOut:true}">
   <parallax-section><h1>section 1</h1></parallax-section>
-  <parallax-section><h1>section 2</h1></parallax-section>
+  <parallax-section>
+
+    <img src="assets/images/clouds.jpg" style="width:100vw;position:fixed" [ParallaxScroll]="{origin:{left:0,top:0},scrollMultiplier:0.05,leftDrift:0}"/>
+    <div style="height:300vh;width:150vw;background:url(assets/images/birds.png) repeat;position:fixed" [ParallaxScroll]="{origin:{left:-500,top:-700},scrollMultiplier:-0.1,leftMovement:300}"></div>
+    <h1>section 2 : The Birds</h1>
+  </parallax-section>
   <parallax-section><h1>section 3</h1></parallax-section>
   <parallax-section [sectionHeight]="'600vh'"><h1>section 4</h1></parallax-section>
   <parallax-section><h1>section 5</h1></parallax-section>
