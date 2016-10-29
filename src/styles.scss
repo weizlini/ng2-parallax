@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+  padding:0;
+  margin:0;
+}
+.parallax-section{
+  display:block;
+  color:transparent;
+  background:transparent;
+  visibility:hidden;
+}
+.parallax-debug .parallax-section{
+  background:#999;
+  color:#fff;
+}
+.parallax-section h1{
+  position:fixed;
+  top:1em;
+  left:1em;
+  color:#99ccee;
+}

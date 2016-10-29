@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,ViewChild,ElementRef } from '@angular/core';
 
 @Component({
   selector: 'parallax-section',
@@ -7,6 +7,7 @@ import { Component, OnInit,Input } from '@angular/core';
 })
 export class ParallaxSectionComponent implements OnInit {
   @Input() sectionHeight:any;
+  @ViewChild('element') element:ElementRef;
   public height:any = 'auto';
   public isInitialized:boolean = false;
 
@@ -17,14 +18,22 @@ export class ParallaxSectionComponent implements OnInit {
     {
       this.height = this.sectionHeight;
     }
+    this.isInitialized = true;
   }
 
-  public activate(){
+
+  public show(){
     if(!this.isInitialized)
       return;
+    this.element.nativeElement.style.visibility='visible';
+  }
+  public hide(){
+    if(!this.isInitialized)
+      return;
+    this.element.nativeElement.style.visibility='hidden';
   }
 
-  public onScroll(){
+  public onScroll(viewPortTop:number,viewPortBottom:number){
 
   }
 }
