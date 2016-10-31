@@ -58,9 +58,9 @@ export class ParallaxAnimateDirective implements OnInit {
             color = color.substr(1);
             if (color.length == 3) {
                 colors = [
-                    parseInt(color.substr(0, 1), 16) * 2 + parseInt(color.substr(0, 1), 16),
-                    parseInt(color.substr(1, 1), 16) * 2 + parseInt(color.substr(1, 1), 16),
-                    parseInt(color.substr(2, 1), 16) * 2 + parseInt(color.substr(2, 1), 16),
+                    parseInt(color.substr(0, 1), 16) * 16 + parseInt(color.substr(0, 1), 16),
+                    parseInt(color.substr(1, 1), 16) * 16 + parseInt(color.substr(1, 1), 16),
+                    parseInt(color.substr(2, 1), 16) * 16 + parseInt(color.substr(2, 1), 16),
                     1
                 ]
             } else {
