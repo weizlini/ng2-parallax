@@ -141,14 +141,14 @@ export interface ParallaxScrollConfig {
 
 ##[ParallaxAnimate]
 
-Set the `[ParallaxAnimate]` attribute to the following type in JSON 
+Set the `[ParallaxAnimate]` attribute to the following type in JSON. 
 
 ```typescript
 export interface ParallaxAnimateConfig {
     animations: Array<ParallaxAnimation>;
 }
 ```
-
+The property animations is an arrya of ParallaxAnimation objects which will allow you to animate any number of css properties.
 each ParallaxAnimation has the following properties to be written as a JSON object.. the properties with a `?` are optional
 
 ```typescript
@@ -163,3 +163,6 @@ export interface ParallaxAnimation {
     customFunction?:Function // a custom function for the animation with the same (current,start,delta,duration) signature
 }
 ```
+
+the `startAt` and `endAt` respresent a fraction (a percent if you will) of the total amount of scrolling. 0 being the start and 1 being the end. the 0 and 1 range represents the amount of scroll needed from when the top of the `<parallax-section>` first appears at the bottom of the viewport (screen) to when the bottom of the `<parallax-section>` scrolls out of view beyond the top of the viewport (screen). 
+
