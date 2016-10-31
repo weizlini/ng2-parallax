@@ -34,7 +34,7 @@ and 2 directives which are placed as attributes of HTML elements contained withi
 
 here's an example from the code contained within the `/src/app/app.component.html` page
 
-```
+```html
 <parallax-page [config]="{sectionHeight:'500vh',debug:false,sectionFadeIn:true,sectionFadeOut:true}">
   <parallax-section>
     
@@ -131,7 +131,7 @@ here's an example from the code contained within the `/src/app/app.component.htm
 
 ##[ParallaxScroll]
 set the `[ParallaxScroll]` attribute to the following type in JSON
-```
+```typescript
 export interface ParallaxScrollConfig {
     origin: position; // an object with left and top values e.g. {left:'10px',top:'10px'}
     scrollMultiplier: number; // the scroll multiplier adjusts the regular scroll which is set to "1"..it can be any value between -1 and 1
@@ -143,7 +143,7 @@ export interface ParallaxScrollConfig {
 
 Set the `[ParallaxAnimate]` attribute to the following type in JSON 
 
-```
+```typescript
 export interface ParallaxAnimateConfig {
     animations: Array<ParallaxAnimation>;
 }
@@ -151,7 +151,7 @@ export interface ParallaxAnimateConfig {
 
 each ParallaxAnimation has the following properties to be written as a JSON object.. the properties with a `?` are optional
 
-```
+```typescript
 export interface ParallaxAnimation {
     cssProperty: string; // the property to animate must be camelCase such as "backgroundColor"
     startValue:any; // the property value, without the units, for for colors use '#xxx','#xxxxxx','rgb(x,x,x)','rgba(x,x,x,x)'
