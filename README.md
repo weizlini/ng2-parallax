@@ -28,7 +28,7 @@ The paralax library is composed of 2 components:
 and 2 directives which are placed as attributes of HTML elements contained within a
 
 * `[ParallaxScroll]=""` (works) this is mostly used to alter the scroll speed of an element to create a depth effect
-* `[ParallaxAnimate]=""` (in progress) this is used to animate any css property during the duration of the scrolling
+* `[ParallaxAnimate]=""` (works) this is used to animate any css property during the duration of the scrolling
 
 ##how to use ng2-parallax
 
@@ -130,10 +130,18 @@ here's an example from the code contained within the `/src/app/app.component.htm
 ```
 
 ##[ParallaxScroll]
+set the `[ParallaxScroll]` attribute to the following type in JSON
+```
+export interface ParallaxScrollConfig {
+    origin: position; // an object with left and top values e.g. {left:'10px',top:'10px'}
+    scrollMultiplier: number; // the scroll multiplier adjusts the regular scroll which is set to "1"..it can be any value between -1 and 1
+    leftMovement: number; // a movement to the left for a drifting scrolling effect. can be also done with ParallaxAnimate
+}
+```
 
 ##[ParallaxAnimate]
 
-Set the ParallaxAnimate attribute to the following type in JSON 
+Set the `[ParallaxAnimate]` attribute to the following type in JSON 
 
 ```
 export interface ParallaxAnimateConfig {

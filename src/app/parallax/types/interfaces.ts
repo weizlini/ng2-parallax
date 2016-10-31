@@ -22,7 +22,6 @@ export interface ParallaxScrollConfig {
     origin: position;
     scrollMultiplier: number;
     leftMovement: number;
-
 }
 
 export interface ParallaxAnimateConfig {
