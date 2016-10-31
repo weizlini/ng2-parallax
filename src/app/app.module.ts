@@ -6,10 +6,9 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ParallaxPageComponent } from './parallax/parallax-page/parallax-page.component';
 import { ParallaxSectionComponent } from './parallax/parallax-section/parallax-section.component';
-import { ParallaxFadeDirective } from './parallax/directives/parallax-fade.directive';
-import { ParallaxPathDirective } from './parallax/directives/parallax-path.directive';
 import { ParallaxScrollDirective } from './parallax/directives/parallax-scroll.directive';
-
+import { ParallaxAnimateDirective } from './parallax/directives/parallax-animate.directive';
+import {ParallaxConfig,ParallaxScrollConfig,ParallaxAnimateConfig,ParallaxAnimation,PllxAnimationEasing} from './parallax/types/interfaces'
 
 
 @NgModule({
@@ -17,10 +16,8 @@ import { ParallaxScrollDirective } from './parallax/directives/parallax-scroll.d
     AppComponent,
     ParallaxPageComponent,
     ParallaxSectionComponent,
-    ParallaxFadeDirective,
-    ParallaxPathDirective,
     ParallaxScrollDirective,
-
+    ParallaxAnimateDirective
   ],
   imports: [
     BrowserModule,

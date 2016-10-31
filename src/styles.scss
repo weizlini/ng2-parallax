@@ -5,7 +5,6 @@ body{
 }
 .parallax-section{
   display:block;
-  color:transparent;
   background:transparent;
   visibility:hidden;
   position:relative;
@@ -27,4 +26,11 @@ body{
 
 .clouds{
   width:100vw;position:fixed;
+}
+
+.text{
+  font:24px/30px sans-serif;
+  color:#667744;
+  width:50%;
+  margin-left:30%;
 }

@@ -3,6 +3,7 @@ import {
     AfterContentInit
 } from '@angular/core';
 import {ParallaxScrollDirective} from '../directives/parallax-scroll.directive';
+import {ParallaxAnimateDirective} from "../directives/parallax-animate.directive";
 @Component({
     selector: 'parallax-section',
     templateUrl: './parallax-section.component.html',
@@ -12,6 +13,7 @@ export class ParallaxSectionComponent implements OnInit,AfterContentInit {
     @Input() sectionHeight: any;
     @ViewChild('element') element: ElementRef;
     @ContentChildren(ParallaxScrollDirective) scrollDirectives: QueryList<ParallaxScrollDirective>;
+    @ContentChildren(ParallaxAnimateDirective) animateDirectives: QueryList<ParallaxAnimateDirective>;
     public height: any = 'auto';
     public isInitialized: boolean = false;
 
@@ -27,6 +29,7 @@ export class ParallaxSectionComponent implements OnInit,AfterContentInit {
 
     ngAfterContentInit() {
         console.log(this.scrollDirectives)
+        console.log(this.animateDirectives)
     }
 
     public show() {
@@ -47,6 +50,9 @@ export class ParallaxSectionComponent implements OnInit,AfterContentInit {
 
         this.scrollDirectives.forEach((scrollDir)=> {
             scrollDir.onScroll(delta,ratio);
+        })
+        this.animateDirectives.forEach((animateDir)=>{
+            animateDir.onScroll(delta,ratio);
         })
 
     }

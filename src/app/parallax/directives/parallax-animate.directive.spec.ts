@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { ParallaxFadeDirective } from './parallax-fade.directive';
+import { ParallaxAnimateDirective } from './parallax-animate.directive';
 
-describe('Directive: ParallaxFade', () => {
+describe('Directive: ParallaxAnimate', () => {
   it('should create an instance', () => {
-    let directive = new ParallaxFadeDirective();
+    let directive = new ParallaxAnimateDirective();
     expect(directive).toBeTruthy();
   });
 });

@@ -25,11 +25,10 @@ The paralax library is composed of 2 components:
 * `<parallax-page>` component (works)
 * `<parallax-section>` component (works)
 
-and 3 directives which are placed as attributes of HTML elements contained within a
+and 2 directives which are placed as attributes of HTML elements contained within a
 
-* `[ParallaxPath]=""` (not implemented yet)
-* `[ParallaxFade]=""` (not implemented yet)
-* `[ParallaxScroll]=""` (works)
+* `[ParallaxScroll]=""` (works) this is mostly used to alter the scroll speed of an element to create a depth effect
+* `[ParallaxAnimate]=""` (in progress) this is used to animate any css property during the duration of the scrolling
 
 ##how to use ng2-parallax
 
@@ -48,4 +47,31 @@ here's an example from the code contained within the `/src/app/app.component.htm
   <parallax-section><h1>section 5</h1></parallax-section>
   <parallax-section><h1>section 6</h1></parallax-section>
 </parallax-page>
+```
+
+##[ParallaxScroll]
+
+##[ParallaxAnimate]
+
+Set the ParallaxAnimate attribute to the following type in JSON 
+
+```
+export interface ParallaxAnimateConfig {
+    animations: Array<ParallaxAnimation>;
+}
+```
+
+each ParallaxAnimation has the following properties to be written as a JSON object.. the properties with a `?` are optional
+
+```
+export interface ParallaxAnimation {
+    cssProperty: string; // the property to animate must be camelCase such as "backgroundColor"
+    startValue:any; // the property value, without the units, for for colors use '#xxx','#xxxxxx','rgb(x,x,x)','rgba(x,x,x,x)'
+    endValue:any; // the final value of the property
+    startAt?:number; //default 0
+    endAt?:number; //default 1
+    units?:string; //default is ''
+    easing?:Function; //default is PllxAnimationEasing.easeInOut
+    customFunction?:Function // a custom function for the animation with the same (current,start,delta,duration) signature
+}
 ```

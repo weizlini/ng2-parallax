@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, Output, ContentChildren, QueryList, AfterViewInit} from '@angular/core';
 import {ParallaxSectionComponent} from '../parallax-section/parallax-section.component';
-import {ParallaxConfig} from '../types/interfaces';
+import {ParallaxConfig} from '../types/interfaces.ts';
 
 
 /**
