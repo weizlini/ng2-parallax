@@ -32,13 +32,44 @@ and 2 directives which are placed as attributes of HTML elements contained withi
 
 ##how to use ng2-parallax
 
+the `<parallax-page></parallax-page>` component is the root container of the parallax scrolling and animations. The parallax-page element contains one `[config]` input field, which will configure the parallax app by passing a JSON object to the config input as follows: 
+```Typescript
+{
+
+    /* the default height of each section as a css string */
+    sectionHeight: string;
+
+    /* whether to display debugging info 
+     * if set to true, you will be able to see the underlying `parallax-section` components as grey boxes,
+     * and a little debug box on the upper right hand corner of the page indicating the scroll values and which sections
+     * are active
+     */
+    debug: boolean;
+
+    /* whether to fade in a section 
+     * when a section passes into thw viewport it is made visible as well as all of its children, the fade makes the 
+     * section fade in between the time the top of the section moves from the bottom of the viewport to the top
+     */
+    sectionFadeIn: boolean;
+
+    /* whether to fade out a section 
+     * when a section passes out of the viewport it is hidden as well as all of its children, the fade makes the 
+     * section fade out between the time the bottom of the section moves from the bottom of the viewport to the top
+     */
+    sectionFadeOut: boolean;
+
+}
+```
+
 here's an example from the code contained within the `/src/app/app.component.html` page
 
 ```html
+<!-- the entire parallax experience is wrapped in a parallax-page component -->
 <parallax-page [config]="{sectionHeight:'500vh',debug:false,sectionFadeIn:true,sectionFadeOut:true}">
+    <!-- each section is wrapped in a parallax-section tag. the parallax sections are the scenes in a parallax scroll experience -->
   <parallax-section>
     
-    <!--this animation will animate the color from black to white during the scrolling-->
+    <!--this animation will animate the background color from black to red during the scrolling-->
     <div class="box" style="position:fixed;width:100vw;height:100vh;top:0;left:0" [ParallaxAnimate]="{
     animations:[
         {cssProperty:'backgroundColor',startValue:'#00000',endValue:'#ff0000'}
@@ -46,7 +77,7 @@ here's an example from the code contained within the `/src/app/app.component.htm
     }">
       </div>
     
-    <!--this animation will animate the color white to black and the fontsize from 1em to 3em-->
+    <!--this animation will animate the text-color from white to black and the fontsize from 1em to 3em-->
     <h1 [ParallaxAnimate]="{
       animations:[
           {cssProperty:'fontSize',startValue:1,endValue:3,units:'em'},
@@ -54,7 +85,7 @@ here's an example from the code contained within the `/src/app/app.component.htm
         ]
       }">section 1 : color, fontSize, and negative scroll</h1>
     
-    <!--this text will scroll down from its origin at 1/20th the scroll speed-->
+    <!--this text will scroll down from its origin at 1/20th the scroll speed in the opposite direction-->
     <div class="text" style="position:fixed" [ParallaxScroll]="{origin:{left:0,top:50},scrollMultiplier:-0.05}">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi blandit enim vestibulum, ornare enim non, iaculis nulla. Pellentesque lobortis varius nisl
 
@@ -129,12 +160,23 @@ here's an example from the code contained within the `/src/app/app.component.htm
 </parallax-page>
 ```
 
+##How `<parallax-page>` and `<parallax-sectiom>` work
+the ParallaxPageComponent upon view init, will keep a list of all the parallax sections, it will set their heights unless overridden in the section itself, and activate the sections that are visible on the screen. The minimum height that a section must be is 100vh, or the height of the screen, which means that no more than 2 sections can be visible at the same time. 
+
+the two active sections are known internally to the page component as the `currentSection` and the `nextSection` the currentSection is the current section if the top of the top of the section has reached the top of the screen. The nextSection is the section after it with a portion visible on the screen.
+
+By default the Parallax routine will fade in a section as it becomes visible, and normally as the nextSection is becoming visible, the currentSection is fading out; the nextSection becomes the currentSection, and the next section is usually NULL at this point until the next section becomes visible
+
+Regular HTML elements can have their css properties animated and synchronized with the scrolling of the page. Since Each animation object will animate only 1 css property, the `[ParallaxAnimate]` directive contains an array so that multiple animations can be performed.
+
+Elements which only scroll at different rates can use the the `[ParallaxScroll]` directive which will modify the scroll speed of an absolutely or fixed position HTML element and move it in either direction as a multiplier of the scroll. so setting the scrollMultiplier to 1 will cause an element to scroll at the same speed as the underlying section. setting it to 0.05 will move it in the direction of the scroll at 1/20th the speed. You can also effect a horizontal moment by setting the LeftMovement attrobite, or by setting a `[ParallaxAnimation]` on the left property 
+
 ##[ParallaxScroll]
 set the `[ParallaxScroll]` attribute to the following type in JSON
 ```typescript
 export interface ParallaxScrollConfig {
     origin: position; // an object with left and top values e.g. {left:'10px',top:'10px'}
-    scrollMultiplier: number; // the scroll multiplier adjusts the regular scroll which is set to "1"..it can be any value between -1 and 1
+    scrollMultiplier: number; // the scroll multiplier adjusts the regular scroll which is set to "1"..it can be any value between -infinity and +infinity
     leftMovement: number; // a movement to the left for a drifting scrolling effect. can be also done with ParallaxAnimate
 }
 ```
@@ -148,7 +190,7 @@ export interface ParallaxAnimateConfig {
     animations: Array<ParallaxAnimation>;
 }
 ```
-The property animations is an arrya of ParallaxAnimation objects which will allow you to animate any number of css properties.
+The property animations is an array of ParallaxAnimation objects which will allow you to animate any number of css properties.
 each ParallaxAnimation has the following properties to be written as a JSON object.. the properties with a `?` are optional
 
 ```typescript
